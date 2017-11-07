@@ -1,0 +1,22 @@
+{
+  "name": "twillio-github-webhook",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanjitschouhan/twillio-github-webhook.git"
+  },
+  "author": "Sanjit Singh Chouhan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sanjitschouhan/twillio-github-webhook/issues"
+  },
+  "homepage": "https://github.com/sanjitschouhan/twillio-github-webhook#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
