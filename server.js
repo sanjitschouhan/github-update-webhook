@@ -17,9 +17,9 @@ app.get("/", function (req, res) {
 })
 
 app.post("/webhook/", function (req, res) {
-    console.log(req.params)
-    console.log(req)
-    logs.push(req.params)
+    console.log(req.body)
+    logs.push(req.body)
+    res.sendStatus(200)
 })
 
 app.listen(app.get('port'), function () {
