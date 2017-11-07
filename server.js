@@ -16,7 +16,7 @@ app.get("/", function (req, res) {
     res.end("</ul>EOF")
 })
 
-app.post("webhook", function (req, res) {
+app.post("/webhook/", function (req, res) {
     console.log(req.params)
     console.log(req)
     logs.push(req.params)
