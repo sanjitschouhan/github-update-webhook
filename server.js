@@ -2,15 +2,11 @@ const port = process.env.PORT || 5000;
 
 var http = require('http')
 var createHandler = require('github-webhook-handler')
-var twilio = require('twilio');
 const TelegramBot = require('node-telegram-bot-api');
 
 var handler = createHandler({ path: '/webhook', secret: 'sans' })
-var accountSid = 'ACee5d88a31d7337a2ece33ea5769c6589'; // Your Account SID from www.twilio.com/console
-var authToken = '89c55479c58630800bceb4901834e66c';   // Your Auth Token from www.twilio.com/console
-var client = new twilio(accountSid, authToken);
 
-var chatId = 277107075;
+var chatId = [277107075];
 const token = '463223344:AAFlZetXUIJR75O9QCh1vNL7OXKpy2BO3ds';
 const bot = new TelegramBot(token, { polling: true });
 
@@ -31,26 +27,34 @@ handler.on('*', function (event) {
         + event.payload.sender.login;
     console.log(msg)
 
-    client.messages.create({
-        body: msg,
-        to: '+917382978847',  // Text this number
-        from: '+12028043580' // From a valid Twilio number
-    }).then((message) => console.log(message.sid));
-    if (chatId != 0)
-        bot.sendMessage(chatId, msg);
+    for (var i = 0; i < chatId.length; i++)
+        bot.sendMessage(chatId[i], msg);
 
 })
 
 // Matches "/echo [whatever]"
 bot.onText(/\/echo (.+)/, (msg, match) => {
-    chatId = msg.chat.id;
+    const chatIdi = msg.chat.id;
     const resp = match[1]; // the captured "whatever"
-    bot.sendMessage(chatId, resp);
+    bot.sendMessage(chatIdi, resp);
 });
 
 bot.on('message', (msg) => {
-    chatId = msg.chat.id;
+    const chatIdi = msg.chat.id;
+    var flag = false;
+    for (var i = 0; i < chatId.length; i++) {
+        if (chatId[i] == chatIdi) {
+            flag = false;
+            break;
+        }
+    }
+    console.log(chatIdi)
+    if (!flag) {
+        chatIdi.push(chatId)
 
-    console.log(chatId)
-    bot.sendMessage(chatId, 'Registered your id ' + chatId);
+        bot.sendMessage(chatIdi, 'Registered your id ' + chatIdi);
+    }
+    else {
+        bot.sendMessage(chatIdi, 'Your id ' + chatIdi + ' already registered');
+    }
 });
