@@ -1,28 +1,23 @@
-const express = require("express")
+const port = process.env.PORT || 5000;
 
-const app = express()
+var http = require('http')
+var createHandler = require('github-webhook-handler')
+var handler = createHandler({ path: '/webhook', secret: 'sans' })
 
-app.set('port', (process.env.PORT || 5000));
+http.createServer(function (req, res) {
+    handler(req, res, function (err) {
+        res.statusCode = 404
+        res.end('no such location')
+    })
+}).listen(port)
 
-var logs = ['test', 'test1']
-
-app.get("/", function (req, res) {
-    // res.write("<html></html>")
-    // res.write("<h2>Webhook Running</h2>")
-    // res.write("<h4>Logs</h4><ul>")
-    // for (var i = 0; i < logs.length; i++) {
-    // res.write("<li>" + JSON.stringify(logs[i]) + "</li>")
-    // }
-    // res.end("</ul>EOF")
-    res.send(JSON.stringify(logs[logs.length - 1]))
+handler.on('error', function (err) {
+    console.error('Error:', err.message)
 })
 
-app.post("/webhook/", function (req, res) {
-    console.log(req)
-    logs.push(req)
-    res.sendStatus(200)
+handler.on('*', function (event) {
+    console.log('Received a push event for %s to %s',
+        event.payload.repository.name,
+        event.payload.ref)
+    console.log(event)
 })
-
-app.listen(app.get('port'), function () {
-    console.log("Your application is listening on " + app.get('port'));
-});
