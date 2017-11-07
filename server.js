@@ -44,7 +44,7 @@ bot.on('message', (msg) => {
     var flag = false;
     for (var i = 0; i < chatId.length; i++) {
         if (chatId[i] == chatIdi) {
-            flag = false;
+            flag = true;
             break;
         }
     }
