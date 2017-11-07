@@ -14,7 +14,7 @@ app.get("/", function (req, res) {
     // res.write("<li>" + JSON.stringify(logs[i]) + "</li>")
     // }
     // res.end("</ul>EOF")
-    res.send(logs[logs.length - 1])
+    res.send(JSON.stringify(logs[logs.length - 1]))
 })
 
 app.post("/webhook/", function (req, res) {
