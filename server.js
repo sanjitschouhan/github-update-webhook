@@ -50,7 +50,7 @@ bot.on('message', (msg) => {
     }
     console.log(chatIdi)
     if (!flag) {
-        chatId.push(chatId)
+        chatId.push(chatIdi)
 
         bot.sendMessage(chatIdi, 'Registered your id ' + chatIdi);
     }
