@@ -21,14 +21,18 @@ handler.on('error', function (err) {
     console.error('Error:', err.message)
 })
 
+function sendMessageToAll(msg) {
+    for (var i = 0; i < chatId.length; i++)
+        bot.sendMessage(chatId[i], msg);
+}
+
 handler.on('*', function (event) {
     var msg = 'GitHub Log: ' + event.event + ' on '
         + event.payload.repository.name + ' by '
-        + event.payload.sender.login;
-    console.log(msg)
-
-    for (var i = 0; i < chatId.length; i++)
-        bot.sendMessage(chatId[i], msg);
+        + event.payload.sender.login + '\n'
+    	+ event[event.event].payload.body;
+    
+  sendMessageToAll(msg);
 
 })
 
