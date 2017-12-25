@@ -23,11 +23,11 @@ handler.on('error', function (err) {
 
 function sendMessageToAll(msg) {
     for (var i = 0; i < chatId.length; i++)
-        bot.sendMessage(chatId[i], msg);
+        bot.sendMessage(chatId[i], msg,  parse_mode: 'Markdown');
 }
 
 handler.on('*', function (event) {
-   var msg = '<b>' + event.event + '</b>' 
+   var msg = '**' + event.event + '**' 
         + '\nRepo: ' + event.payload.repository.name 
       	+ '\nBy: ' + event.payload.sender.login;
   if (event.event=='pull_request') {
