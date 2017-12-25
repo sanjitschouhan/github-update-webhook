@@ -23,7 +23,7 @@ handler.on('error', function (err) {
 
 function sendMessageToAll(msg) {
     for (var i = 0; i < chatId.length; i++)
-        bot.sendMessage(chatId[i], msg, 'Markdown');
+        bot.sendMessage(chat_id: chatId[i], text: msg, parse_mode: 'Markdown');
 }
 
 handler.on('*', function (event) {
