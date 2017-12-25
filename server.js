@@ -36,7 +36,7 @@ handler.on('*', function (event) {
       	+ '\nBy: ' + event.payload.sender.login
       	+ '\nTitle: ' + event.payload[event.event].title
     	+ '\nStatus: ' + event.payload[event.event].state
-    	+ '\nURL: ' + event.payload[event.event].html_url;
+    	+ '\nURL: [](' + event.payload[event.event].html_url+')';
   }
     
   sendMessageToAll(msg);
