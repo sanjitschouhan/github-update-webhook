@@ -31,12 +31,22 @@ handler.on('*', function (event) {
         + '\nRepo: [' + event.payload.repository.name +']('+event.payload.repository.html_url+')'
       	+ '\nBy: [' + event.payload.sender.login +']('+event.payload.sender.html_url+')';
   if (event.event=='pull_request') {
-    msg = '[' + event.event + ' #' + event.payload.number + '](' 
+    msg = '[Pull Request #' + event.payload.number + '](' 
       		+ event.payload[event.event].html_url + ')'
         + '\nRepo: [' + event.payload.repository.name +']('+event.payload.repository.html_url+')'
       	+ '\nBy: [' + event.payload.sender.login +']('+event.payload.sender.html_url+')'
       	+ '\nTitle: ' + event.payload[event.event].title
+    	+ '\nAction: ' + event.payload.action
     	+ '\nStatus: ' + event.payload[event.event].state;
+  }
+  if (event.event=='issues') {
+    msg = '[Issue #' + event.payload.issue.number + '](' 
+      		+ event.payload.issue.html_url + ')'
+        + '\nRepo: [' + event.payload.repository.name +']('+event.payload.repository.html_url+')'
+      	+ '\nBy: [' + event.payload.sender.login +']('+event.payload.sender.html_url+')'
+      	+ '\nTitle: ' + event.payload.issue.title
+    	+ '\nAction: ' + event.payload.action
+    	+ '\nStatus: ' + event.payload.issue.state;
   }
     
   sendMessageToAll(msg);
