@@ -27,10 +27,17 @@ function sendMessageToAll(msg) {
 }
 
 handler.on('*', function (event) {
-    var msg = 'GitHub Log: ' + event.event + ' on '
-        + event.payload.repository.name + ' by '
-        + event.payload.sender.login + '\n'
-    	+ event.payload[event.event].body;
+   var msg = '**' + event.event + '**' 
+        + '\nRepo: ' + event.payload.repository.name 
+      	+ '\nBy: ' + event.payload.sender.login;
+  if (event.event=='pull_request') {
+    msg = '**' + event.event + ' #' + event.payload.number + '**' 
+        + '\nRepo: ' + event.payload.repository.name 
+      	+ '\nBy: ' + event.payload.sender.login
+      	+ '\nTitle: ' + event.payload[event.event].title
+    	+ '\nStatus: ' + event.payload[event.event].state
+    	+ '\nURL: ' + event.payload[event.event].html_url;
+  }
     
   sendMessageToAll(msg);
 
