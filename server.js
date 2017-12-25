@@ -31,9 +31,9 @@ handler.on('*', function (event) {
         + '\nRepo: [' + event.payload.repository.name +']('+event.payload.repository.html_url+')'
       	+ '\nBy: [' + event.payload.sender.login +']('+event.payload.sender.html_url+')';
   if (event.event=='pull_request') {
-    msg = '*' + event.event + ' #' + event.payload.number + '*' 
-        + '\nRepo: ' + event.payload.repository.name 
-      	+ '\nBy: ' + event.payload.sender.login
+    msg = '*' + event.event + ' #' + event.payload.number + '*'
+        + '\nRepo: [' + event.payload.repository.name +']('+event.payload.repository.html_url+')'
+      	+ '\nBy: [' + event.payload.sender.login +']('+event.payload.sender.html_url+')'
       	+ '\nTitle: ' + event.payload[event.event].title
     	+ '\nStatus: ' + event.payload[event.event].state
     	+ '\nURL: [Pull Request #'+event.payload.number+'](' + event.payload[event.event].html_url+')';
