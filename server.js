@@ -29,15 +29,15 @@ function sendMessageToAll(msg) {
 handler.on('*', function (event) {
    var msg = '*' + event.event + '*'
    		+ '\n----'
-        + '\n > Repo: ' + event.payload.repository.name 
-      	+ '\n > By: ' + event.payload.sender.login;
+        + '\nRepo: ' + event.payload.repository.name 
+      	+ '\nBy: ' + event.payload.sender.login;
   if (event.event=='pull_request') {
     msg = '*' + event.event + ' #' + event.payload.number + '*' 
-        + '\n > Repo: ' + event.payload.repository.name 
-      	+ '\n > By: ' + event.payload.sender.login
-      	+ '\n > Title: ' + event.payload[event.event].title
-    	+ '\n > Status: ' + event.payload[event.event].state
-    	+ '\n > URL: [Pull Request #'+event.payload.number+'](' + event.payload[event.event].html_url+')';
+        + '\nRepo: ' + event.payload.repository.name 
+      	+ '\nBy: ' + event.payload.sender.login
+      	+ '\nTitle: ' + event.payload[event.event].title
+    	+ '\nStatus: ' + event.payload[event.event].state
+    	+ '\nURL: [Pull Request #'+event.payload.number+'](' + event.payload[event.event].html_url+')';
   }
     
   sendMessageToAll(msg);
