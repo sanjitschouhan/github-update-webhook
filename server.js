@@ -30,7 +30,7 @@ handler.on('*', function (event) {
     var msg = 'GitHub Log: ' + event.event + ' on '
         + event.payload.repository.name + ' by '
         + event.payload.sender.login + '\n'
-    	+ event.payload[event.event].url;
+    	+ event.payload[event.event].body;
     
   sendMessageToAll(msg);
 
