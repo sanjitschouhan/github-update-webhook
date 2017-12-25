@@ -27,7 +27,8 @@ function sendMessageToAll(msg) {
 }
 
 handler.on('*', function (event) {
-   var msg = '*' + event.event + '*' 
+   var msg = '*' + event.event + '*'
+   		+ '\n======================='
         + '\n>Repo: ' + event.payload.repository.name 
       	+ '\n>By: ' + event.payload.sender.login;
   if (event.event=='pull_request') {
