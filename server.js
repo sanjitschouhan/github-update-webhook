@@ -48,6 +48,7 @@ handler.on('*', function (event) {
     	+ '\nAction: ' + event.payload.action
     	+ '\nStatus: ' + event.payload.issue.state;
   }
+  console.log("Recieved Event Payload: \n"+ event.payload);
     
   sendMessageToAll(msg);
 
